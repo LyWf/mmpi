@@ -26,7 +26,8 @@
 
   const SEND_EVENTS_INTERVAL = 60000; // 1m
 
-  const API_HOST = 'http://localhost:5000';
+  // const API_HOST = 'http://localhost:5000';
+  const API_HOST = 'https://sleepy-headland-81525.herokuapp.com';
 
   // state
   // -------------------------------------------------------------------------------------------
