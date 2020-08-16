@@ -26,6 +26,8 @@
 
   const SEND_EVENTS_INTERVAL = 60000; // 1m
 
+  const API_HOST = 'http://localhost:5000';
+
   // state
   // -------------------------------------------------------------------------------------------
   const appState = {
@@ -89,35 +91,13 @@
   // requests
   // -------------------------------------------------------------------------------------------
   function fetchTest(testId) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          name: 'Сергея',
-          gender: '',
-          status: '',
-          answers: '2',
-        });
-      }, 1000);
-    });
+    return fetch(`${API_HOST}/v1/mmpi?interview=${testId}`)
+      .then(response => response.json());
   }
 
   function fetchQuestions(gender) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve([
-          'Временами мне в голову приходят такие нехорошие мысли, что о них лучше не рассказывать',
-          'Второй вопрос',
-          // 'Третий вопрос',
-          // 'Четвертый вопрос',
-          // 'Пятый вопрос',
-          // 'Первый вопрос',
-          // 'Второй вопрос',
-          // 'Третий вопрос',
-          // 'Четвертый вопрос',
-          // 'Пятый вопрос',
-        ]);
-      }, 1000);
-    });
+    return fetch(`/questions/${gender}.json`)
+      .then(response => response.json());
   }
 
   function sendEvents(events) {
@@ -131,7 +111,16 @@
 
     window.localStorage.setItem(testId, answersStr);
 
-    return Promise.resolve()
+    return fetch(`${API_HOST}/v1/mmpi`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      body: JSON.stringify({
+        interview: testId,
+        answers: answersStr,
+      }),
+    })
       .catch(() => { /* do nothing, the previous answers will be sent with the next request */ });
   }
 
@@ -442,7 +431,7 @@
       initAppStateTest(test);
       renderDynamicTestProps(test);
     })
-    .then(fetchQuestions)
+    .then(() => fetchQuestions(getAppState().test.gender))
     .then((questions) => {
       setAppState({ questions });
       renderQuestions(questions);
