@@ -27,6 +27,7 @@
   const SEND_EVENTS_INTERVAL = 60000; // 1m
 
   // const API_HOST = 'http://localhost:5000';
+  const STATIC_HOST = 'https://lywf.github.io/mmpi';
   const API_HOST = 'https://sleepy-headland-81525.herokuapp.com';
 
   // state
@@ -97,7 +98,7 @@
   }
 
   function fetchQuestions(gender) {
-    return fetch(`/questions/${gender}.json`)
+    return fetch(`${STATIC_HOST}/questions/${gender}.json`)
       .then(response => response.json());
   }
 
