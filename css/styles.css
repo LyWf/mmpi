@@ -1,0 +1,268 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  /*background-color: #EFF3F6;*/
+  background-color: #fff;
+  font-size: 19px;
+  line-height: 28px;
+  /*color: rgba(0, 14, 36, 0.87);*/
+  color: #000;
+}
+
+#root {
+  height: 100vh;
+}
+
+.screen {
+  height: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  display: none;
+}
+.screen_visible {
+  display: block;
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px 40px;
+  box-sizing: border-box;
+}
+
+.button {
+  padding: 6px 14px;
+  border-radius: 4px;
+  border-style: none;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  min-height: 40px;
+  width: 100%;
+}
+.button_primary {
+  color: #fff;
+  /*background-color: #2399F0;*/
+  background-color: rgb(1, 66, 172);
+}
+.button_primary:hover {
+  /*background-color: #0e7fd2;*/
+  background-color: rgb(39, 94, 184);
+}
+.button_primary:active {
+  /*background-color: #006CBF;*/
+  background-color: rgb(1, 59, 155);
+}
+
+.buttonHelpText {
+  font-size:12px;
+  line-height: 16px;
+  margin-left: 8px;
+  display: none;
+}
+
+@media all and (min-width: 840px) {
+  body {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .button {
+    width: auto;
+  }
+
+  .buttonHelpText {
+    display: inline-block;
+  }
+}
+
+/* screenLoading */
+
+#screenLoading .screen__title {
+  font-size: 24px;
+  margin: 0 0 32px 0;
+}
+
+#screenLoading .screen__loader {
+  width: 56px;
+}
+
+#screenLoading .screen__title {
+  font-size: 24px;
+}
+
+/* screenStart */
+
+#screenStart .screen__title {
+  font-size: 24px;
+  margin: 0 0 16px 0;
+}
+
+#screenStart .screen__note {
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 32px;
+}
+
+#screenStart .action {
+  display: none;
+}
+#screenStart .action_active {
+  display: inline;
+}
+
+/* screenQuestions */
+
+#screenQuestions .questionsList {
+  padding: 32px 0;
+}
+#screenQuestions .questionsList_view {
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#screenQuestions .questionsList__container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  counter-reset: question;
+  transition: transform .6s ease 0s;
+}
+
+#screenQuestions .questionsList_view .questionsList__container {
+  will-change: transform;
+}
+#screenQuestions .questionsList_view .question {
+  opacity: 0;
+  height: 100vh;
+  border-top: none;
+  padding: 0;
+  visibility: hidden;
+}
+#screenQuestions .questionsList_view .question_active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#screenQuestions .question {
+  padding: 16px 0;
+  border-top: 1px solid rgba(0, 27, 72, .12);
+  cursor: pointer;
+  /*margin-left: 60px;*/
+  margin: 0 30px 0 60px;
+  transition: opacity .3s ease 0s, height .3s ease 0s;
+}
+#screenQuestions .question:first-child {
+  border-top: none;
+}
+#screenQuestions .question_active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  cursor: default;
+  will-change: opacity;
+  font-weight: 500;
+}
+
+#screenQuestions .question__text::before {
+  counter-increment: question;
+  display: inline-block;
+  width: 60px;
+  text-align: right;
+  content: counter(question) ".";
+  box-sizing: border-box;
+  padding-right: 8px;
+  margin-left: -60px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#screenQuestions .question__answers {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin-top: 32px;
+}
+#screenQuestions .question_active .question__answers {
+  display: block;
+}
+
+#screenQuestions .question__answer {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+#screenQuestions .question__button {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+}
+
+#screenQuestions .question__label {
+  position: relative;
+  z-index: 1;
+  width: 168px;
+  min-height: 40px;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 20px;
+  line-height: 28px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgb(1, 66, 172);
+  background-color: rgba(1, 66, 172, .1);
+  box-shadow: rgba(1, 66, 172, .6) 0 0 0 1px inset;
+  transition: box-shadow .3s ease-out;
+}
+#screenQuestions .question__label:hover {
+  background-color: rgba(1, 66, 172, 0.3);
+}
+
+#screenQuestions .question__labelWrap {
+  flex-grow: 1;
+}
+
+#screenQuestions .question__label::before {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 22px;
+  font-weight: 700;
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  border: solid 1px rgba(1, 66, 172, 0.6);
+  background-color: #fff;
+  margin-right: 8px;
+  box-sizing: border-box;
+}
+#screenQuestions .question__label_yes::before {
+  content: "Д";
+}
+#screenQuestions .question__label_no::before {
+  content: "Н";
+}
+
+#screenQuestions .question__button:checked + .question__label {
+  box-shadow: rgba(1, 66, 172, .8) 0 0 0 2px inset;
+}
+#screenQuestions .question__button:checked + .question__label::before {
+  background-color: rgb(1, 66, 172);
+  border-color: rgb(1, 66, 172);
+  color: #fff;
+}
+#screenQuestions .question__button:checked + .question__label::after {
+  content: "";
+  background-image: url('../img/check.svg');
+  display: inline-block;
+  width: 16px;
+  height: 13px;
+}
+
+#screenQuestions .submitAnswers {
+  margin-top: 16px;
+}

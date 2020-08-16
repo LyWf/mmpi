@@ -1,0 +1,30 @@
+{
+  "name": "mmpi-front",
+  "version": "0.1.0",
+  "description": "MMPI test frontend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel ./js/main.js --out-file ./js/main.dist.js",
+    "build2": "parcel build ./js/main.dist.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LyWf/mmpi.git"
+  },
+  "author": "Sergey Goldshteyn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LyWf/mmpi/issues"
+  },
+  "homepage": "https://github.com/LyWf/mmpi#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5"
+  }
+}
