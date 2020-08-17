@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Тест MMPI (СМИЛ)</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossorigin="anonymous" />
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+
+  <body>
+    <div id="root">
+      <section id="screenLoading" class="screen screen_visible">
+        <div class="layout">
+          <div>
+            <h1 class="screen__title">Тест MMPI (СМИЛ) загружается</h1>
+            <img class="screen__loader" src="img/loader.svg" alt="Загрузка..." />
+          </div>
+        </div>
+      </section>
+
+      <section id="screenStart" class="screen">
+        <div class="layout">
+          <div>
+            <h1 class="screen__title">Тест MMPI (СМИЛ)</h1>
+            <p class="screen__note">
+              Этот тест подготовлен для <span class="dynamicTestProp" data-prop="greeting">%s</span>.<br />
+              На вопросы можно отвечать мышкой или кнопками <b>Д</b> и <b>Н</b> на клавиатуре.
+            </p>
+            <button class="button button_primary" type="button">
+              <span class="action action_begin">Начать</span>
+              <span class="action action_continue">Продолжить</span>
+            </button>
+            <span class="buttonHelpText">
+              нажмите клавишу <b>Enter ↵</b>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenQuestions" class="screen">
+        <div class="">
+          <div class="questionsList">
+            <ol class="questionsList__container">
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenDone" class="screen">
+        <div class="layout">
+          <div>
+            <h1 class="screen__title">Тест MMPI (СМИЛ)</h1>
+            <p class="screen__note">
+              Тест завершен 🙂
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <template id="questionTemplate">
+      <li class="question" data-id="">
+        <div class="question__text"></div>
+        <ul class="question__answers">
+          <li class="question__answer">
+            <input
+              type="radio"
+              id="qay"
+              name="qid"
+              class="question__button question__button_yes"
+              tabindex="-1"
+              value="1"
+            />
+            <label for="qay" class="question__label question__label_yes" tabindex="0">
+              <span class="question__labelWrap">Верно</span>
+            </label>
+          </li>
+          <li class="question__answer">
+            <input
+              type="radio"
+              id="qan"
+              name="qid"
+              class="question__button question__button_no"
+              tabindex="-1"
+              value="0"
+            />
+            <label for="qan" class="question__label question__label_no" tabindex="0">
+              <span class="question__labelWrap">Не верно</span>
+            </label>
+          </li>
+        </ul>
+      </li>
+    </template>
+
+    <template id="submitAnswers">
+      <div class="submitAnswers">
+        <form action="" method="post">
+          <input type="hidden" name="testId" value="" />
+          <input type="hidden" name="answers" value="" />
+          <button class="button button_primary" type="submit">
+            Завершить
+          </button>
+          <span class="buttonHelpText">
+            нажмите клавишу <b>Enter ↵</b>
+          </span>
+        </form>
+      </div>
+    </template>
+
+    <script src="js/polyfills.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

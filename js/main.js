@@ -255,6 +255,8 @@
       .classList.add('questionsList_view');
     document.querySelectorAll('#screenQuestions  .question').item(questionId)
       .classList.add('question_active');
+    document.querySelector('#screenQuestions .questionsList__container')
+      .style.transform = `translateY(-${questionId}00vh)`;
   }
 
   function addEventsOnEnterScreenQuestions() {
